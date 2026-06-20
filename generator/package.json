@@ -1,0 +1,13 @@
+{
+  "name": "@potter/generator",
+  "version": "0.1.0",
+  "description": "Quills — Potter's Whiskers-style template generator.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "quills": "src/cli.ts"
+  },
+  "scripts": {
+    "generate": "node src/cli.ts"
+  }
+}

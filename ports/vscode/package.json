@@ -1,0 +1,31 @@
+{
+  "name": "potter-vscode",
+  "displayName": "Potter",
+  "description": "Potter — warm paper & ink theme (Parchment, Quill, Ink) for VS Code.",
+  "version": "0.1.0",
+  "publisher": "potter-theme",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Potter Parchment",
+        "uiTheme": "vs",
+        "path": "./themes/potter-parchment.json"
+      },
+      {
+        "label": "Potter Quill",
+        "uiTheme": "vs-dark",
+        "path": "./themes/potter-quill.json"
+      },
+      {
+        "label": "Potter Ink",
+        "uiTheme": "vs-dark",
+        "path": "./themes/potter-ink.json"
+      }
+    ]
+  }
+}

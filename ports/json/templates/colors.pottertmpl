@@ -1,0 +1,12 @@
+---
+out: .
+filename: potter-{flavor}.json
+---
+{
+  "name": "{{flavor.name}}",
+  "id": "{{flavor.id}}",
+  "dark": {{#if dark}}true{{/if}}{{#unless dark}}false{{/unless}},
+  "colors": {
+{{#each colorList}}    "{{name}}": "{{hex}}"{{#unless last}},{{/unless}}
+{{/each}}  }
+}

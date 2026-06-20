@@ -1,0 +1,13 @@
+{
+  "name": "@potter/css",
+  "version": "0.1.0",
+  "description": "Potter as CSS custom properties (all flavors, with light/dark auto + data-attribute switching).",
+  "license": "MIT",
+  "main": "dist/potter.css",
+  "style": "dist/potter.css",
+  "exports": {
+    ".": "./dist/potter.css",
+    "./scss": "./dist/_potter.scss"
+  },
+  "files": ["dist"]
+}

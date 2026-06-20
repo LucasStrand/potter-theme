@@ -1,0 +1,33 @@
+{
+  "name": "Potter Ink",
+  "id": "ink",
+  "dark": true,
+  "colors": {
+    "rosewater": "#ead0c1",
+    "flamingo": "#e5bba8",
+    "pink": "#dcaab2",
+    "mauve": "#c4a5ca",
+    "red": "#d87d70",
+    "maroon": "#d19181",
+    "peach": "#e28c6c",
+    "yellow": "#e2b45c",
+    "green": "#9eb27f",
+    "teal": "#86b5a6",
+    "sky": "#91bcc6",
+    "sapphire": "#81b0c2",
+    "blue": "#8ca8ca",
+    "lavender": "#b5b2d6",
+    "text": "#ece6da",
+    "subtext1": "#c3b79f",
+    "subtext0": "#a39884",
+    "overlay2": "#88795e",
+    "overlay1": "#6e6049",
+    "overlay0": "#524634",
+    "surface2": "#3b3122",
+    "surface1": "#2e261b",
+    "surface0": "#221c14",
+    "base": "#14110c",
+    "mantle": "#0f0c08",
+    "crust": "#0a0806"
+  }
+}

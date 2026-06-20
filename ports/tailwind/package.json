@@ -1,0 +1,15 @@
+{
+  "name": "@potter/tailwind",
+  "version": "0.1.0",
+  "description": "Potter Tailwind integration — v4 @theme tokens + v3 preset, alpha-aware.",
+  "license": "MIT",
+  "main": "dist/preset.cjs",
+  "exports": {
+    ".": "./dist/potter.css",
+    "./preset": "./dist/preset.cjs"
+  },
+  "peerDependencies": {
+    "@potter/css": "^0.1.0"
+  },
+  "files": ["dist"]
+}

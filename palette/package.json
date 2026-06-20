@@ -1,0 +1,23 @@
+{
+  "name": "@potter/palette",
+  "version": "0.1.0",
+  "description": "Potter color palette — source of truth (3 flavors × 26 colors) with JSON + typed bindings.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./palette.json": "./palette.json"
+  },
+  "files": [
+    "dist",
+    "palette.json"
+  ],
+  "scripts": {
+    "build": "node src/build.ts"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "potter-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Potter — a warm paper & ink color theme ecosystem, Catppuccin-grade.",
+  "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "palette",
+    "generator",
+    "ports/*"
+  ],
+  "scripts": {
+    "build-palette": "node palette/src/build.ts",
+    "generate": "node generator/src/cli.ts",
+    "build:site": "node scripts/build-site.ts",
+    "build": "npm run build-palette && npm run generate && npm run build:site",
+    "contrast": "node scripts/check-contrast.ts",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  }
+}

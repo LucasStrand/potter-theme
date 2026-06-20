@@ -4,3 +4,14 @@ node_modules/
 .vscode-test/
 *.vsix
 dist-tmp/
+
+# Next.js / web app build artifacts
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.vercel/
+
+# local verification scratch
+_shoot.mjs
+_shot-*.png

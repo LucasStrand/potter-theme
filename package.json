@@ -8,7 +8,8 @@
   "workspaces": [
     "palette",
     "generator",
-    "ports/*"
+    "ports/*",
+    "apps/*"
   ],
   "scripts": {
     "build-palette": "node palette/src/build.ts",

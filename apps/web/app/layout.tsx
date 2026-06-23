@@ -51,7 +51,7 @@ const noFlash = `(function(){try{
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-potter-flavor="quill" className={`${fraunces.variable} ${jbmono.variable}`}>
+    <html lang="en" data-potter-flavor="quill" suppressHydrationWarning className={`${fraunces.variable} ${jbmono.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlash }} />
       </head>

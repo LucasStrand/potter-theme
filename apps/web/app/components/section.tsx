@@ -12,7 +12,7 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
+    <section id={id} className="mx-auto w-full max-w-6xl scroll-mt-16 px-6 py-20 sm:py-28">
       <p className="font-mono text-[11px] uppercase tracking-[0.28em]" style={{ color: "var(--potter-overlay2)" }}>
         {eyebrow}
       </p>

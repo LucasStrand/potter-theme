@@ -19,7 +19,7 @@ export default function Home() {
           id="palette"
           eyebrow="the palette"
           title="Twenty-six colors, three flavors"
-          lead="14 hues + 12 neutrals per flavor. Hover to inspect, click to copy. Every value is contrast-checked against its base."
+          lead="Every flavor, all twenty-six colors — 14 hues + 12 neutrals each. Hover any swatch to inspect it; click to copy its hex."
         >
           <PaletteExplorer />
         </Section>

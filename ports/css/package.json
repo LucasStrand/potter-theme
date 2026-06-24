@@ -9,5 +9,16 @@
     ".": "./dist/potter.css",
     "./scss": "./dist/_potter.scss"
   },
-  "files": ["dist"]
+  "files": ["dist"],
+  "keywords": ["potter", "css", "scss", "color", "theme", "custom-properties"],
+  "homepage": "https://potter.nu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasStrand/potter-theme.git",
+    "directory": "ports/css"
+  },
+  "bugs": "https://github.com/LucasStrand/potter-theme/issues",
+  "publishConfig": {
+    "access": "public"
+  }
 }

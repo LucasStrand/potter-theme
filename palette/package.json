@@ -17,7 +17,19 @@
     "dist",
     "palette.json"
   ],
+  "keywords": ["potter", "color", "palette", "theme", "design-tokens", "catppuccin"],
+  "homepage": "https://potter.nu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasStrand/potter-theme.git",
+    "directory": "palette"
+  },
+  "bugs": "https://github.com/LucasStrand/potter-theme/issues",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "node src/build.ts"
+    "build": "node src/build.ts",
+    "prepublishOnly": "node src/build.ts"
   }
 }

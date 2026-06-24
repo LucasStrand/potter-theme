@@ -11,5 +11,16 @@
   "peerDependencies": {
     "@potter/css": "^0.1.0"
   },
-  "files": ["dist"]
+  "files": ["dist"],
+  "keywords": ["potter", "tailwind", "tailwindcss", "color", "theme", "preset"],
+  "homepage": "https://potter.nu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasStrand/potter-theme.git",
+    "directory": "ports/tailwind"
+  },
+  "bugs": "https://github.com/LucasStrand/potter-theme/issues",
+  "publishConfig": {
+    "access": "public"
+  }
 }

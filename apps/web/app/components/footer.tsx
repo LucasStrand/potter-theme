@@ -1,12 +1,12 @@
-import { Logo } from "./logo";
-
 export function Footer() {
   return (
     <footer className="mt-10 border-t px-6 py-14" style={{ borderColor: "var(--potter-surface0)", background: "var(--potter-mantle)" }}>
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <div>
-          <Logo className="text-xl" />
-          <p className="mt-2 text-sm" style={{ color: "var(--potter-subtext0)" }}>
+          <div className="font-display text-xl font-semibold" style={{ color: "var(--potter-text)" }}>
+            Potter<span style={{ color: "var(--site-accent, var(--potter-peach))" }}>.</span>
+          </div>
+          <p className="mt-1 text-sm" style={{ color: "var(--potter-subtext0)" }}>
             paper &amp; ink — Parchment · Quill · Ink
           </p>
         </div>

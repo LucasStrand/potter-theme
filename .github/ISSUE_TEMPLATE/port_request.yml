@@ -1,0 +1,32 @@
+name: Port request
+description: Ask for Potter support in a tool that doesn't have it yet.
+labels: ["port-request"]
+body:
+  - type: input
+    id: target
+    attributes:
+      label: Target tool / app
+      placeholder: e.g. Zed, GTK, Discord, Obsidian
+    validations:
+      required: true
+  - type: input
+    id: format
+    attributes:
+      label: Config format it uses
+      placeholder: e.g. JSON theme, TOML, CSS, a .ase file
+  - type: input
+    id: docs
+    attributes:
+      label: Link to its theming docs (if any)
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything that would help whoever builds it (gotchas, ANSI vs 24-bit, etc).
+  - type: checkboxes
+    id: offer
+    attributes:
+      label: Can you help?
+      options:
+        - label: I'm willing to build this port
+        - label: I can test it once someone builds it

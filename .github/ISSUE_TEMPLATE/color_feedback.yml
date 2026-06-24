@@ -1,0 +1,25 @@
+name: Color feedback
+description: A color looks wrong — contrast, muddiness, or a clashing accent.
+labels: ["color"]
+body:
+  - type: dropdown
+    id: flavor
+    attributes:
+      label: Flavor
+      options: [Parchment, Quill, Ink]
+    validations:
+      required: true
+  - type: input
+    id: color
+    attributes:
+      label: Color name
+      placeholder: one of the 26 names, e.g. peach, surface0, subtext1
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Where did you see it, and what's wrong?
+      description: Palette changes ripple to every port, so the more context the better. Screenshots help.
+    validations:
+      required: true

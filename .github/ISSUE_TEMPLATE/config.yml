@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Style guide & color meanings
+    url: https://github.com/LucasStrand/potter-theme/blob/main/STYLE_GUIDE.md
+    about: What every Potter color means and how ports should map them.
+  - name: How to build a port
+    url: https://github.com/LucasStrand/potter-theme/blob/main/CONTRIBUTING.md
+    about: Add a new port with a template plus `npm run generate`.

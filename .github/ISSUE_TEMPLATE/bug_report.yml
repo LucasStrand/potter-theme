@@ -1,0 +1,37 @@
+name: Bug report
+description: Something in a port, the generator, or the website is broken.
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem?
+      options:
+        - A port (config output)
+        - The generator / build tooling
+        - The website (apps/web)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: port
+    attributes:
+      label: Which port / area?
+      placeholder: e.g. ports/vscode, or apps/web
+  - type: dropdown
+    id: flavor
+    attributes:
+      label: Flavor
+      options: [Parchment, Quill, Ink, All / N/A]
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you get? Include steps to reproduce.
+    validations:
+      required: true
+  - type: textarea
+    id: screens
+    attributes:
+      label: Screenshots
+      description: Drag in images if it's visual.

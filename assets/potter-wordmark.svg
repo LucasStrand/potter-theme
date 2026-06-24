@@ -1,0 +1,7 @@
+<svg width="420" height="120" viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Potter">
+  <text x="8" y="84" font-family="Fraunces, 'Hoefler Text', Georgia, 'Times New Roman', serif"
+        font-size="86" font-weight="600" letter-spacing="-2" fill="#efe9df">Potter<tspan fill="#e08a6a">.</tspan></text>
+  <!-- quill swash -->
+  <path d="M12 100 C 120 88, 230 88, 330 96 C 360 98, 380 98, 404 90"
+        stroke="#e08a6a" stroke-width="4" stroke-linecap="round" fill="none"/>
+</svg>

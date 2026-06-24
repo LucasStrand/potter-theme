@@ -1,7 +1,7 @@
 @import "tailwindcss";
 /* Dogfood Potter: --potter-* vars (per flavor) + Tailwind tokens (bg-potter-*, text-potter-*) */
-@import "@potter/css";
-@import "@potter/tailwind";
+@import "@potternu/css";
+@import "@potternu/tailwind";
 
 @theme {
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;

@@ -1,5 +1,5 @@
 {
-  "name": "@potter/css",
+  "name": "@potternu/css",
   "version": "0.1.0",
   "description": "Potter as CSS custom properties (all flavors, with light/dark auto + data-attribute switching).",
   "license": "MIT",

@@ -1,5 +1,5 @@
 {
-  "name": "@potter/web",
+  "name": "@potternu/web",
   "version": "0.1.0",
   "private": true,
   "description": "Potter showcase website (potter.nu).",
@@ -11,9 +11,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@potter/css": "*",
-    "@potter/palette": "*",
-    "@potter/tailwind": "*",
+    "@potternu/css": "*",
+    "@potternu/palette": "*",
+    "@potternu/tailwind": "*",
     "next": "^16.2.9",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

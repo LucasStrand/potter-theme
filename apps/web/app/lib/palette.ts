@@ -1,4 +1,4 @@
-import paletteJson from "@potter/palette/palette.json";
+import paletteJson from "@potternu/palette/palette.json";
 
 export interface ColorEntry {
   hex: string;

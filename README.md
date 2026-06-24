@@ -31,7 +31,7 @@ See **[STYLE_GUIDE.md](./STYLE_GUIDE.md)** for what every color means.
 
 ```html
 <html data-potter-flavor="quill">
-<link rel="stylesheet" href="@potter/css">   <!-- ports/css/dist/potter.css -->
+<link rel="stylesheet" href="@potternu/css">   <!-- ports/css/dist/potter.css -->
 ```
 ```css
 .button { background: var(--potter-peach); color: var(--potter-base); }
@@ -43,8 +43,8 @@ With no `data-potter-flavor`, `:root` follows the OS light/dark preference
 ### Tailwind
 
 ```css
-@import "@potter/css";
-@import "@potter/tailwind";   /* v4: bg-potter-base, text-potter-text, border-potter-overlay0 */
+@import "@potternu/css";
+@import "@potternu/tailwind";   /* v4: bg-potter-base, text-potter-text, border-potter-overlay0 */
 ```
 Tailwind v3: use `ports/tailwind/dist/preset.cjs` (alpha-aware via the `-rgb` vars).
 
@@ -66,7 +66,7 @@ Ready-made configs in `ports/terminal/{kitty,alacritty,wezterm,foot}/potter-<fla
 ## Repository
 
 ```
-palette/      palette.json (source of truth) + typed JS/TS bindings (@potter/palette)
+palette/      palette.json (source of truth) + typed JS/TS bindings (@potternu/palette)
 generator/    Quills — the Whiskers-style template engine
 lib/          zero-dependency color math (shared)
 ports/        css · tailwind · nvim · terminal · vscode · xresources · gimp · tmux · json
@@ -102,7 +102,7 @@ lives — every port updates from it.
 showcase **website** (`apps/web` → potter.nu), tests + WCAG gate + CI.
 
 **Next:** Adobe `.ase` export, more ports (GTK, zsh/starship, browsers, Discord),
-and `@potter/*` npm publishing. See **[PORTS.md](./PORTS.md)** for the full list and
+and `@potternu/*` npm publishing. See **[PORTS.md](./PORTS.md)** for the full list and
 what's wanted.
 
 ## Contributing

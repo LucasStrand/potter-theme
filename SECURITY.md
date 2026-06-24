@@ -7,7 +7,7 @@ showcase website. The realistic surface is the build/generator tooling and the
 ## Reporting a vulnerability
 
 If you find a security issue (for example in the generator, a published
-`@potter/*` package, or the website), **please do not open a public issue.**
+`@potternu/*` package, or the website), **please do not open a public issue.**
 
 Email **cupkeykpwn@gmail.com** with:
 

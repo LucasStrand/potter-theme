@@ -1,5 +1,5 @@
 {
-  "name": "@potter/tailwind",
+  "name": "@potternu/tailwind",
   "version": "0.1.0",
   "description": "Potter Tailwind integration — v4 @theme tokens + v3 preset, alpha-aware.",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "./preset": "./dist/preset.cjs"
   },
   "peerDependencies": {
-    "@potter/css": "^0.1.0"
+    "@potternu/css": "^0.1.0"
   },
   "files": ["dist"],
   "keywords": ["potter", "tailwind", "tailwindcss", "color", "theme", "preset"],

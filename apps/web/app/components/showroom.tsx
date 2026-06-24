@@ -28,7 +28,7 @@ export function Showroom() {
         <pre className="overflow-x-auto p-4" style={{ color: "var(--potter-text)" }}>
           <code>
             <div><C t="// a quill writes in three inks" c="overlay1" /></div>
-            <div><C t="import" c="mauve" /> {"{ Flavor }"} <C t="from" c="mauve" /> <C t={'"@potter/palette"'} c="green" /><C t=";" c="overlay2" /></div>
+            <div><C t="import" c="mauve" /> {"{ Flavor }"} <C t="from" c="mauve" /> <C t={'"@potternu/palette"'} c="green" /><C t=";" c="overlay2" /></div>
             <div>&nbsp;</div>
             <div><C t="export function" c="mauve" /> <C t="brew" c="blue" /><C t="(" c="overlay2" /><C t="flavor" c="maroon" /><C t=": " c="overlay2" /><C t="Flavor" c="yellow" /><C t=")" c="overlay2" /> {"{"}</div>
             <div>{"  "}<C t="const" c="mauve" /> <C t="accent" c="text" /> <C t="=" c="sky" /> <C t={'"#d97757"'} c="green" /><C t=";" c="overlay2" /> <C t="// peach" c="overlay1" /></div>

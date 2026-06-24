@@ -83,7 +83,7 @@ deeper than their dark-flavor counterparts to meet this floor.)
 - Brand: **Potter** (the ecosystem). Flavors are ink/paper themed: **Parchment**,
   **Quill**, **Ink**. A user writes a flavor as e.g. `Potter Quill`; the machine id
   is the lowercase single word (`quill`).
-- Port packages are `@potter/<port>` (npm) or `potter-<port>` where a registry has
+- Port packages are `@potternu/<port>` (npm) or `potter-<port>` where a registry has
   no scopes. Generated files are named `potter-<flavor>.<ext>`.
 
 ## For port authors

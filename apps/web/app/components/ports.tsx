@@ -15,7 +15,7 @@ const PORTS = [
   { ic: "R", name: "rofi", blurb: ".rasi theme vars", path: "/ports/rofi" },
   { ic: "M", name: "mako", blurb: "notification colors", path: "/ports/mako" },
   { ic: "{}", name: "JSON", blurb: "flat tokens for anything", path: "/ports/json" },
-  { ic: "◆", name: "@potter/palette", blurb: "typed JS/TS bindings", path: "/palette" },
+  { ic: "◆", name: "@potternu/palette", blurb: "typed JS/TS bindings", path: "/palette" },
 ];
 
 export function Ports() {

@@ -15,8 +15,8 @@
     "build-palette": "node palette/src/build.ts",
     "generate": "node generator/src/cli.ts",
     "build": "npm run build-palette && npm run generate",
-    "site:dev": "npm run dev -w @potter/web",
-    "site:build": "npm run build -w @potter/web",
+    "site:dev": "npm run dev -w @potternu/web",
+    "site:build": "npm run build -w @potternu/web",
     "contrast": "node scripts/check-contrast.ts",
     "test": "node --test"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "@potter/palette",
+  "name": "@potternu/palette",
   "version": "0.1.0",
   "description": "Potter color palette — source of truth (3 flavors × 26 colors) with JSON + typed bindings.",
   "license": "MIT",

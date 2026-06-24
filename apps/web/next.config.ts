@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // @potter/palette ships ESM + JSON; let Next transpile it cleanly.
-  transpilePackages: ["@potter/palette"],
+  // @potternu/palette ships ESM + JSON; let Next transpile it cleanly.
+  transpilePackages: ["@potternu/palette"],
 };
 
 export default nextConfig;

@@ -5,6 +5,7 @@ const PORTS = [
   { ic: "T", name: "Tailwind", blurb: "v4 tokens + v3 preset", path: "/ports/tailwind" },
   { ic: "N", name: "Neovim", blurb: "Treesitter + LSP groups", path: "/ports/nvim" },
   { ic: "K", name: "Terminals", blurb: "kitty · alacritty · wezterm · foot", path: "/ports/terminal" },
+  { ic: "W", name: "Windows Terminal", blurb: "3 flavor schemes (.json)", path: "/ports/windows-terminal" },
   { ic: "V", name: "VS Code", blurb: "3 themes, full token map", path: "/ports/vscode" },
   { ic: "X", name: "Xresources", blurb: "X11 / xterm / urxvt", path: "/ports/xresources" },
   { ic: "G", name: "GIMP", blurb: ".gpl · Inkscape · Krita", path: "/ports/gimp" },

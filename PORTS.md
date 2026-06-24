@@ -19,6 +19,10 @@ To request a target that isn't here, open a [Port request](https://github.com/Lu
 | **WezTerm** | `ports/terminal/wezterm` | `.lua` | needs live check |
 | **foot** | `ports/terminal/foot` | `.ini` | needs live check |
 | **Windows Terminal** | `ports/windows-terminal` | `.json` schemes (3 flavors) | Stable |
+| **Hyprland** | `ports/hyprland` | `.conf` color vars | Stable |
+| **Waybar** | `ports/waybar` | `.css` (@define-color) | Stable |
+| **rofi** | `ports/rofi` | `.rasi` theme | Stable |
+| **mako** | `ports/mako` | `.ini` config | Stable |
 | **VS Code** | `ports/vscode` | theme extension (`themes/*.json`) | needs live check |
 | **Xresources** | `ports/xresources` | `.Xresources` | Stable |
 | **GIMP** | `ports/gimp` | `.gpl` palette | Stable |
@@ -31,7 +35,7 @@ Open or upvote a [Port request](https://github.com/LucasStrand/potter-theme/issu
 
 GTK · zsh / starship · Discord (BetterDiscord/Vencord) · Firefox · Chrome ·
 Obsidian · Zed · Helix · Sublime Text · Slack · Adobe `.ase` ·
-Warp · Ghostty · Rofi / Waybar · Spotify (Spicetify)
+Warp · Ghostty · Spotify (Spicetify)
 
 See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for how to build one — it's a template
 plus `npm run generate`.

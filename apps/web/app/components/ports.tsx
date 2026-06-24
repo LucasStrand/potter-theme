@@ -10,6 +10,10 @@ const PORTS = [
   { ic: "X", name: "Xresources", blurb: "X11 / xterm / urxvt", path: "/ports/xresources" },
   { ic: "G", name: "GIMP", blurb: ".gpl · Inkscape · Krita", path: "/ports/gimp" },
   { ic: "⊞", name: "tmux", blurb: "statusline + panes", path: "/ports/tmux" },
+  { ic: "H", name: "Hyprland", blurb: "color vars to source", path: "/ports/hyprland" },
+  { ic: "B", name: "Waybar", blurb: "@define-color CSS", path: "/ports/waybar" },
+  { ic: "R", name: "rofi", blurb: ".rasi theme vars", path: "/ports/rofi" },
+  { ic: "M", name: "mako", blurb: "notification colors", path: "/ports/mako" },
   { ic: "{}", name: "JSON", blurb: "flat tokens for anything", path: "/ports/json" },
   { ic: "◆", name: "@potter/palette", blurb: "typed JS/TS bindings", path: "/palette" },
 ];

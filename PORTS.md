@@ -18,6 +18,7 @@ To request a target that isn't here, open a [Port request](https://github.com/Lu
 | **Alacritty** | `ports/terminal/alacritty` | `.toml` | needs live check |
 | **WezTerm** | `ports/terminal/wezterm` | `.lua` | needs live check |
 | **foot** | `ports/terminal/foot` | `.ini` | needs live check |
+| **Windows Terminal** | `ports/windows-terminal` | `.json` schemes (3 flavors) | Stable |
 | **VS Code** | `ports/vscode` | theme extension (`themes/*.json`) | needs live check |
 | **Xresources** | `ports/xresources` | `.Xresources` | Stable |
 | **GIMP** | `ports/gimp` | `.gpl` palette | Stable |
@@ -29,7 +30,7 @@ To request a target that isn't here, open a [Port request](https://github.com/Lu
 Open or upvote a [Port request](https://github.com/LucasStrand/potter-theme/issues/new?template=port_request.yml):
 
 GTK · zsh / starship · Discord (BetterDiscord/Vencord) · Firefox · Chrome ·
-Obsidian · Zed · Helix · Sublime Text · Slack · Adobe `.ase` · Windows Terminal ·
+Obsidian · Zed · Helix · Sublime Text · Slack · Adobe `.ase` ·
 Warp · Ghostty · Rofi / Waybar · Spotify (Spicetify)
 
 See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for how to build one — it's a template

@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/LucasStrand/potter-theme/actions/workflows/ci.yml"><img src="https://github.com/LucasStrand/potter-theme/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-d77250" alt="MIT"></a>
-  <a href="./PORTS.md"><img src="https://img.shields.io/badge/ports-12-e08a6a" alt="Ports"></a>
+  <a href="./PORTS.md"><img src="https://img.shields.io/badge/ports-13-e08a6a" alt="Ports"></a>
   <a href="https://potter.nu"><img src="https://img.shields.io/badge/site-potter.nu-1c1812" alt="Website"></a>
 </p>
 

@@ -1,0 +1,23 @@
+{
+    "name": "Potter Parchment",
+    "background": "#faf9f5",
+    "foreground": "#141413",
+    "cursorColor": "#d77250",
+    "selectionBackground": "#a89e8c",
+    "black": "#e3dacc",
+    "red": "#b02619",
+    "green": "#788c5d",
+    "yellow": "#bd8324",
+    "blue": "#4a6da0",
+    "purple": "#9a6aa0",
+    "cyan": "#4f8a78",
+    "white": "#6b6357",
+    "brightBlack": "#d6cab4",
+    "brightRed": "#b02619",
+    "brightGreen": "#788c5d",
+    "brightYellow": "#bd8324",
+    "brightBlue": "#4a6da0",
+    "brightPurple": "#9a6aa0",
+    "brightCyan": "#4f8a78",
+    "brightWhite": "#897f6d"
+}

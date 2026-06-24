@@ -35,6 +35,8 @@ export interface RenderContext {
   accents: RenderColor[];
   colorList: RenderColor[];
   ansi: { name: string; code: number; normal: { hex: string }; bright: { hex: string; code: number } }[];
+  /** ANSI colors keyed by name (e.g. term.magenta.bright.hex) — for ports that need named access. */
+  term: Record<string, { normal: { hex: string }; bright: { hex: string; code: number } }>;
 }
 
 type Flavor = {
@@ -60,12 +62,17 @@ export function buildContext(id: string, flavor: Flavor): RenderContext {
       normal: { hex: e.normal.hex },
       bright: { hex: e.bright.hex, code: e.bright.code },
     }));
+  const term: RenderContext["term"] = {};
+  for (const [k, e] of Object.entries(flavor.ansi)) {
+    term[k] = { normal: { hex: e.normal.hex }, bright: { hex: e.bright.hex, code: e.bright.code } };
+  }
   return {
     flavor: { id, name: flavor.name, dark: flavor.dark },
     colors,
     accents,
     colorList,
     ansi,
+    term,
   };
 }
 
@@ -84,6 +91,7 @@ function resolvePath(path: string, scope: Record<string, unknown>, ctx: RenderCo
   let cur: unknown =
     parts[0] in scope ? scope[parts[0]] : parts[0] in ctx.colors ? ctx.colors[parts[0]] : undefined;
   if (cur === undefined && parts[0] === "flavor") cur = ctx.flavor;
+  if (cur === undefined && parts[0] === "term") cur = ctx.term;
   if (cur === undefined) {
     // bare flavor fields: {{dark}}, {{name}} (when not shadowed by an each item)
     const flavor = (scope.flavor as Record<string, unknown> | undefined) ?? ctx.flavor;

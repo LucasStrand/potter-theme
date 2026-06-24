@@ -1,0 +1,26 @@
+---
+filename: potter-{flavor}.json
+---
+{
+    "name": "{{flavor.name}}",
+    "background": "{{base.hex}}",
+    "foreground": "{{text.hex}}",
+    "cursorColor": "{{peach.hex}}",
+    "selectionBackground": "{{overlay2.hex}}",
+    "black": "{{term.black.normal.hex}}",
+    "red": "{{term.red.normal.hex}}",
+    "green": "{{term.green.normal.hex}}",
+    "yellow": "{{term.yellow.normal.hex}}",
+    "blue": "{{term.blue.normal.hex}}",
+    "purple": "{{term.magenta.normal.hex}}",
+    "cyan": "{{term.cyan.normal.hex}}",
+    "white": "{{term.white.normal.hex}}",
+    "brightBlack": "{{term.black.bright.hex}}",
+    "brightRed": "{{term.red.bright.hex}}",
+    "brightGreen": "{{term.green.bright.hex}}",
+    "brightYellow": "{{term.yellow.bright.hex}}",
+    "brightBlue": "{{term.blue.bright.hex}}",
+    "brightPurple": "{{term.magenta.bright.hex}}",
+    "brightCyan": "{{term.cyan.bright.hex}}",
+    "brightWhite": "{{term.white.bright.hex}}"
+}

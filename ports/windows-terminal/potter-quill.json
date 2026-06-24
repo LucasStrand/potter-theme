@@ -1,0 +1,23 @@
+{
+    "name": "Potter Quill",
+    "background": "#1c1812",
+    "foreground": "#efe9df",
+    "cursorColor": "#e08a6a",
+    "selectionBackground": "#8f7f64",
+    "black": "#362c20",
+    "red": "#d77b6e",
+    "green": "#9cb07d",
+    "yellow": "#e0b25a",
+    "blue": "#8aa6c8",
+    "purple": "#c2a3c8",
+    "cyan": "#84b3a4",
+    "white": "#c8bca4",
+    "brightBlack": "#453829",
+    "brightRed": "#d77b6e",
+    "brightGreen": "#9cb07d",
+    "brightYellow": "#e0b25a",
+    "brightBlue": "#8aa6c8",
+    "brightPurple": "#c2a3c8",
+    "brightCyan": "#84b3a4",
+    "brightWhite": "#a99e8d"
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Potter Ink",
+    "background": "#060605",
+    "foreground": "#e9e6e0",
+    "cursorColor": "#e28c6c",
+    "selectionBackground": "#7c766c",
+    "black": "#1f1d1a",
+    "red": "#d87d70",
+    "green": "#9eb27f",
+    "yellow": "#e2b45c",
+    "blue": "#8ca8ca",
+    "purple": "#c4a5ca",
+    "cyan": "#86b5a6",
+    "white": "#bdb6ab",
+    "brightBlack": "#2a2723",
+    "brightRed": "#d87d70",
+    "brightGreen": "#9eb27f",
+    "brightYellow": "#e2b45c",
+    "brightBlue": "#8ca8ca",
+    "brightPurple": "#c4a5ca",
+    "brightCyan": "#86b5a6",
+    "brightWhite": "#9a9389"
+}

@@ -1,6 +1,6 @@
 <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Potter">
   <rect width="128" height="128" rx="28" fill="#1c1812"/>
-  <text x="22" y="94" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" fill="#efe9df">P</text>
-  <path d="M60 98 C 76 92, 100 92, 112 98" fill="none" stroke="#e08a6a" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="88" cy="86" r="13" fill="#e08a6a"/>
+  <text x="26" y="88" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="700" fill="#efe9df">P</text>
+  <circle cx="92" cy="82" r="12" fill="#e08a6a"/>
+  <path d="M24 104 C 44 98, 84 98, 104 104" fill="none" stroke="#e08a6a" stroke-width="7" stroke-linecap="round"/>
 </svg>

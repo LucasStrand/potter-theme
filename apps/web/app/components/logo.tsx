@@ -1,37 +1,30 @@
 /**
- * The Potter logo: the exact "P" from the display face (Fraunces), followed by
- * the accent dot from the hero — here resting on a small quill swash so the dot
- * is connected to the line. Colors track the live flavor + accent.
+ * The Potter logo = the hero wordmark, scaled down: "Potter" in the display face
+ * (Fraunces) + the accent dot, with the quill swash drawn underneath. Colors
+ * track the live flavor + accent. Size it via a text-* class on `className`.
  */
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`font-display font-semibold leading-none ${className}`}
+      className={`font-display relative inline-block font-semibold leading-none ${className}`}
       style={{ color: "var(--potter-text)" }}
       aria-label="Potter"
     >
-      P
+      Potter<span style={{ color: "var(--site-accent, var(--potter-peach))" }}>.</span>
       <svg
-        viewBox="0 0 28 28"
+        className="pointer-events-none absolute left-0 w-full"
+        style={{ bottom: "-0.22em", height: "0.32em" }}
+        viewBox="0 0 600 40"
+        fill="none"
+        preserveAspectRatio="none"
         aria-hidden
-        style={{
-          display: "inline-block",
-          width: "0.7em",
-          height: "0.7em",
-          marginLeft: "0.02em",
-          verticalAlign: "-0.12em",
-        }}
       >
-        {/* quill swash — the line the dot is connected to */}
         <path
-          d="M3 21 C 9 18, 19 18, 25 21"
-          fill="none"
+          d="M8 26 C 120 8, 220 8, 320 20 C 400 30, 470 32, 560 14 C 575 11, 588 12, 594 20"
           stroke="var(--site-accent, var(--potter-peach))"
-          strokeWidth="2.4"
+          strokeWidth="3"
           strokeLinecap="round"
         />
-        {/* the accent dot, resting on the swash (the same dot as the hero) */}
-        <circle cx="8.6" cy="16" r="4.4" fill="var(--site-accent, var(--potter-peach))" />
       </svg>
     </span>
   );

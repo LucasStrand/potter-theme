@@ -1,7 +1,5 @@
 "use client";
-import { FLAVORS, FLAVOR_LABEL, useFlavor, type Flavor } from "../flavor-provider";
-
-const ICON: Record<Flavor, string> = { parchment: "🪶", quill: "🖋️", ink: "🌑" };
+import { FLAVORS, FLAVOR_LABEL, useFlavor } from "../flavor-provider";
 
 export function FlavorSwitch({ size = "md" }: { size?: "sm" | "md" }) {
   const { flavor, setFlavor } = useFlavor();
@@ -27,7 +25,6 @@ export function FlavorSwitch({ size = "md" }: { size?: "sm" | "md" }) {
               color: active ? "var(--potter-base)" : "var(--potter-subtext1)",
             }}
           >
-            <span aria-hidden className="mr-1.5">{ICON[f]}</span>
             {FLAVOR_LABEL[f]}
           </button>
         );

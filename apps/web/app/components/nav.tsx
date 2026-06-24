@@ -1,5 +1,6 @@
 "use client";
 import { FlavorSwitch } from "./flavor-switch";
+import { Logo } from "./logo";
 
 export function Nav() {
   return (
@@ -8,8 +9,8 @@ export function Nav() {
       style={{ background: "rgb(var(--potter-mantle-rgb) / 0.82)", borderBottom: "1px solid var(--potter-surface0)" }}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-6">
-        <a href="#top" className="font-display text-lg font-semibold" style={{ color: "var(--potter-text)" }}>
-          Potter<span style={{ color: "var(--site-accent, var(--potter-peach))" }}>.</span>
+        <a href="#top" aria-label="Potter — home" className="transition-opacity hover:opacity-80">
+          <Logo className="text-lg" />
         </a>
         <div className="ml-auto hidden items-center gap-6 text-sm sm:flex" style={{ color: "var(--potter-subtext1)" }}>
           <a href="#palette" className="transition-colors hover:text-[var(--potter-text)]">Palette</a>

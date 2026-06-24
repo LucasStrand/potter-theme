@@ -31,8 +31,7 @@ export function Hero() {
           style={{ color: "var(--potter-subtext0)" }}
         >
           A warm <strong style={{ color: "var(--potter-text)" }}>paper &amp; ink</strong> color theme.
-          Three flavors, twenty-six colors, one source of truth — for the web, your editor,
-          your terminal, your whole desktop.
+          Three flavors, for your editor, your terminal, your whole desktop.
         </p>
         <div className="rise rise-2 mt-10">
           <FlavorSwitch />

@@ -1,10 +1,6 @@
 <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Potter">
-  <!-- paper -->
   <rect width="128" height="128" rx="28" fill="#1c1812"/>
-  <!-- ink drop (peach signature) -->
-  <path d="M64 26C64 26 92 60 92 80a28 28 0 0 1-56 0c0-20 28-54 28-54Z" fill="#e08a6a"/>
-  <!-- nib slit -->
-  <path d="M64 52v40" stroke="#1c1812" stroke-width="4" stroke-linecap="round"/>
-  <!-- quill swash -->
-  <path d="M30 104c20-7 48-7 68 0" stroke="#efe9df" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+  <text x="22" y="94" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" fill="#efe9df">P</text>
+  <path d="M60 98 C 76 92, 100 92, 112 98" fill="none" stroke="#e08a6a" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="88" cy="86" r="13" fill="#e08a6a"/>
 </svg>

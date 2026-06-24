@@ -18,8 +18,8 @@ export default function Home() {
         <Section
           id="palette"
           eyebrow="the palette"
-          title="Twenty-six colors, three flavors"
-          lead="Every flavor, all twenty-six colors — 14 hues + 12 neutrals each. Hover any swatch to inspect it; click to copy its hex."
+          title="Three flavors"
+          lead="14 hues + 12 neutrals each. Hover any swatch to inspect it; click to copy its hex."
         >
           <PaletteExplorer />
         </Section>

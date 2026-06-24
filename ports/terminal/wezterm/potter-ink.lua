@@ -2,24 +2,24 @@
 -- local potter = require("potter-ink")
 -- config.colors = potter
 return {
-  foreground = "#ece6da",
-  background = "#14110c",
+  foreground = "#e9e6e0",
+  background = "#060605",
   cursor_bg = "#e28c6c",
-  cursor_fg = "#14110c",
+  cursor_fg = "#060605",
   cursor_border = "#e28c6c",
-  selection_bg = "#88795e",
-  selection_fg = "#14110c",
-  scrollbar_thumb = "#3b3122",
-  split = "#2e261b",
+  selection_bg = "#7c766c",
+  selection_fg = "#060605",
+  scrollbar_thumb = "#2a2723",
+  split = "#1f1d1a",
   ansi = {
-    "#2e261b", "#d87d70", "#9eb27f", "#e2b45c", "#8ca8ca", "#c4a5ca", "#86b5a6", "#c3b79f", 
+    "#1f1d1a", "#d87d70", "#9eb27f", "#e2b45c", "#8ca8ca", "#c4a5ca", "#86b5a6", "#bdb6ab", 
   },
   brights = {
-    "#3b3122", "#d87d70", "#9eb27f", "#e2b45c", "#8ca8ca", "#c4a5ca", "#86b5a6", "#a39884", 
+    "#2a2723", "#d87d70", "#9eb27f", "#e2b45c", "#8ca8ca", "#c4a5ca", "#86b5a6", "#9a9389", 
   },
   tab_bar = {
-    background = "#0f0c08",
-    active_tab = { bg_color = "#e28c6c", fg_color = "#14110c" },
-    inactive_tab = { bg_color = "#0f0c08", fg_color = "#a39884" },
+    background = "#030302",
+    active_tab = { bg_color = "#e28c6c", fg_color = "#060605" },
+    inactive_tab = { bg_color = "#030302", fg_color = "#9a9389" },
   },
 }

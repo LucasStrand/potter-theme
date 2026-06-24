@@ -2,35 +2,35 @@
 # import = ["~/.config/alacritty/potter-ink.toml"]
 
 [colors.primary]
-background = "#14110c"
-foreground = "#ece6da"
-dim_foreground = "#a39884"
+background = "#060605"
+foreground = "#e9e6e0"
+dim_foreground = "#9a9389"
 
 [colors.cursor]
-text = "#14110c"
+text = "#060605"
 cursor = "#e28c6c"
 
 [colors.selection]
-text = "#14110c"
-background = "#88795e"
+text = "#060605"
+background = "#7c766c"
 
 [colors.normal]
-black = "#2e261b"
+black = "#1f1d1a"
 red = "#d87d70"
 green = "#9eb27f"
 yellow = "#e2b45c"
 blue = "#8ca8ca"
 magenta = "#c4a5ca"
 cyan = "#86b5a6"
-white = "#c3b79f"
+white = "#bdb6ab"
 
 [colors.bright]
-black = "#3b3122"
+black = "#2a2723"
 red = "#d87d70"
 green = "#9eb27f"
 yellow = "#e2b45c"
 blue = "#8ca8ca"
 magenta = "#c4a5ca"
 cyan = "#86b5a6"
-white = "#a39884"
+white = "#9a9389"
 

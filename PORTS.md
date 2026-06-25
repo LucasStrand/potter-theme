@@ -19,6 +19,8 @@ To request a target that isn't here, open a [Port request](https://github.com/Lu
 | **WezTerm** | `ports/terminal/wezterm` | `.lua` | needs live check |
 | **foot** | `ports/terminal/foot` | `.ini` | needs live check |
 | **Windows Terminal** | `ports/windows-terminal` | `.json` schemes (3 flavors) | Stable |
+| **Starship** | `ports/starship` | `.toml` (`[palettes.potter]` + themed prompt) | needs live check |
+| **Windows (desktop theme)** | `ports/windows-theme` | `Apply-Potter.ps1` (registry accent + dark/light) + `.theme` gallery files | Stable |
 | **Hyprland** | `ports/hyprland` | `.conf` color vars | Stable |
 | **Waybar** | `ports/waybar` | `.css` (@define-color) | Stable |
 | **rofi** | `ports/rofi` | `.rasi` theme | Stable |
@@ -33,7 +35,7 @@ To request a target that isn't here, open a [Port request](https://github.com/Lu
 
 Open or upvote a [Port request](https://github.com/LucasStrand/potter-theme/issues/new?template=port_request.yml):
 
-GTK · zsh / starship · Discord (BetterDiscord/Vencord) · Firefox · Chrome ·
+GTK · zsh · Discord (BetterDiscord/Vencord) · Firefox · Chrome ·
 Obsidian · Zed · Helix · Sublime Text · Slack · Adobe `.ase` ·
 Warp · Ghostty · Spotify (Spicetify)
 

@@ -57,7 +57,7 @@ A good port:
 
 ## Requesting a port (no code)
 
-Open a **Port request** issue. Popular targets we'd love: GTK, zsh/starship,
+Open a **Port request** issue. Popular targets we'd love: GTK, zsh,
 Discord, Firefox/Chrome, Obsidian, Zed, Helix, Sublime, Slack, Adobe `.ase`.
 
 ## Pull requests

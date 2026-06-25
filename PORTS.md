@@ -21,6 +21,8 @@ To request a target that isn't here, open a [Port request](https://github.com/Lu
 | **Windows Terminal** | `ports/windows-terminal` | `.json` schemes (3 flavors) | Stable |
 | **Starship** | `ports/starship` | `.toml` (`[palettes.potter]` + themed prompt) | needs live check |
 | **Windows (desktop theme)** | `ports/windows-theme` | `Apply-Potter.ps1` (registry accent + dark/light) + `.theme` gallery files | Stable |
+| **GlazeWM** | `ports/glazewm` | `window_effects` border colors (`.yaml`) | needs live check |
+| **Zebar** | `ports/zebar` | `.css` (`--potter-*` vars + themed widgets) | needs live check |
 | **Hyprland** | `ports/hyprland` | `.conf` color vars | Stable |
 | **Waybar** | `ports/waybar` | `.css` (@define-color) | Stable |
 | **rofi** | `ports/rofi` | `.rasi` theme | Stable |

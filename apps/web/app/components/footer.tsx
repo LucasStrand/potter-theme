@@ -13,10 +13,17 @@ export function Footer() {
         <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm" style={{ color: "var(--potter-subtext1)" }}>
           <a href="https://github.com/LucasStrand/potter-theme" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]">GitHub</a>
           <a href="https://github.com/LucasStrand/potter-theme/blob/main/STYLE_GUIDE.md" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]">Style guide</a>
-          <span style={{ color: "var(--potter-overlay1)" }}>npm — soon</span>
+          <a href="https://www.npmjs.com/package/@potternu/css" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]">npm</a>
         </div>
       </div>
-      <p className="mx-auto mt-10 max-w-6xl font-mono text-[11px]" style={{ color: "var(--potter-overlay2)" }}>
+      <p className="mx-auto mt-10 max-w-6xl font-mono text-[11px] leading-relaxed" style={{ color: "var(--potter-overlay2)" }}>
+        Set in{" "}
+        <a href="https://fonts.google.com/specimen/Fraunces" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]" style={{ color: "var(--potter-subtext0)" }}>Fraunces</a>{" "}
+        &amp;{" "}
+        <a href="https://fonts.google.com/specimen/JetBrains+Mono" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]" style={{ color: "var(--potter-subtext0)" }}>JetBrains&nbsp;Mono</a>{" "}
+        — both free &amp; OFL-licensed, so you can wear the whole vibe.
+      </p>
+      <p className="mx-auto mt-3 max-w-6xl font-mono text-[11px]" style={{ color: "var(--potter-overlay2)" }}>
         Built with <span style={{ color: "var(--site-accent, var(--potter-peach))" }}>&#9829;</span> by Potter
       </p>
     </footer>

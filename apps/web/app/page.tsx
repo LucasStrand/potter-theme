@@ -3,8 +3,10 @@ import { Hero } from "./components/hero";
 import { Section } from "./components/section";
 import { PaletteExplorer } from "./components/palette-explorer";
 import { Showroom } from "./components/showroom";
+import { WallpaperConverter } from "./components/wallpaper-converter";
 import { Ports } from "./components/ports";
 import { Install } from "./components/install";
+import { UnderConstruction } from "./components/under-construction";
 import { Footer } from "./components/footer";
 
 export default function Home() {
@@ -27,17 +29,26 @@ export default function Home() {
         <Section
           id="showroom"
           eyebrow="in the wild"
-          title="It looks right everywhere"
-          lead="The same source palette drives your editor and your terminal. Switch the flavor — these re-ink with the rest of the page."
+          title="It just looks so right everywhere"
+          lead="The same source palette drives your editor and your terminal."
         >
           <Showroom />
+        </Section>
+
+        <Section
+          id="wallpaper"
+          eyebrow="make it yours"
+          title="Potter your wallpaper"
+          lead="Drop in any image, and with the flick and a swish of your wand, re-ink it in your flavor."
+        >
+          <WallpaperConverter />
         </Section>
 
         <Section
           id="ports"
           eyebrow="ports"
           title="Drop it into your whole setup"
-          lead="One source of truth, generated into every target. Web, editors, terminals, and your Arch desktop."
+          lead="One source of truth, generated into every target. Web, editors, terminals, and your Arch (btw) desktop."
         >
           <Ports />
         </Section>
@@ -50,6 +61,8 @@ export default function Home() {
         >
           <Install />
         </Section>
+
+        <UnderConstruction />
       </main>
       <Footer />
     </>

@@ -15,3 +15,5 @@ next-env.d.ts
 # local verification scratch
 _shoot.mjs
 _shot-*.png
+
+.vercel

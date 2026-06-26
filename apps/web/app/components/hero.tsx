@@ -4,9 +4,13 @@ import { Wordmark } from "./wordmark";
 import { FlavorSwitch } from "./flavor-switch";
 import { ACCENTS } from "../lib/palette";
 import { useFlavor } from "../flavor-provider";
+import { useCopy } from "../lib/use-copy";
+
+const INSTALL = "npm i @potternu/css";
 
 export function Hero() {
   const { accent, setAccent } = useFlavor();
+  const { copied, copy } = useCopy();
   return (
     <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 text-center">
       <InkCanvas />
@@ -33,12 +37,31 @@ export function Hero() {
           A warm <strong style={{ color: "var(--potter-text)" }}>paper &amp; ink</strong> color theme.
           Three flavors, for your editor, your terminal, your whole desktop.
         </p>
-        <div className="rise rise-2 mt-10">
+        {/* install command */}
+        <div className="rise rise-2 mt-9">
+          <button
+            onClick={() => copy(INSTALL)}
+            aria-label="Copy npm install command"
+            className="group inline-flex items-center gap-3 rounded-full border px-5 py-2.5 font-mono text-sm transition-colors"
+            style={{ borderColor: "var(--potter-surface1)", background: "var(--potter-mantle)", color: "var(--potter-subtext1)" }}
+          >
+            <span style={{ color: "var(--potter-overlay2)" }}>$</span>
+            <span>{INSTALL}</span>
+            <span
+              className="text-xs uppercase tracking-wider transition-colors"
+              style={{ color: copied === INSTALL ? "var(--site-accent, var(--potter-peach))" : "var(--potter-overlay2)" }}
+            >
+              {copied === INSTALL ? "copied ✓" : "copy"}
+            </span>
+          </button>
+        </div>
+
+        <div className="rise rise-3 mt-10">
           <FlavorSwitch />
         </div>
 
         {/* accent picker */}
-        <div className="rise rise-3 mt-8 flex flex-col items-center gap-2">
+        <div className="rise rise-4 mt-8 flex flex-col items-center gap-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--potter-overlay2)" }}>
             accent
           </span>

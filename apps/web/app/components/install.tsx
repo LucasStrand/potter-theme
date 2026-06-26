@@ -9,9 +9,9 @@ type Tab = (typeof TABS)[number];
 function snippet(tab: Tab, flavor: string): string {
   switch (tab) {
     case "CSS":
-      return `<html data-potter-flavor="${flavor}">\n<link rel="stylesheet" href="@potternu/css">\n\n.btn {\n  background: var(--potter-peach);\n  color: var(--potter-base);\n}`;
+      return `npm i @potternu/css\n\n<html data-potter-flavor="${flavor}">\n@import "@potternu/css";\n\n.btn {\n  background: var(--potter-peach);\n  color: var(--potter-base);\n}`;
     case "Tailwind":
-      return `@import "@potternu/css";\n@import "@potternu/tailwind";\n\n<div class="bg-potter-base text-potter-text">\n  <span class="text-potter-peach">Potter</span>\n</div>`;
+      return `npm i @potternu/css @potternu/tailwind\n\n@import "@potternu/css";\n@import "@potternu/tailwind";\n\n<div class="bg-potter-base text-potter-text">\n  <span class="text-potter-peach">Potter</span>\n</div>`;
     case "Neovim":
       return `require("potter").load("${flavor}")\n-- or:\n:colorscheme potter-${flavor}`;
     case "Terminal":

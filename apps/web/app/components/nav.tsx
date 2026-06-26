@@ -15,6 +15,7 @@ export function Nav() {
         <div className="ml-auto hidden items-center gap-6 text-sm sm:flex" style={{ color: "var(--potter-subtext1)" }}>
           <a href="#palette" className="transition-colors hover:text-[var(--potter-text)]">Palette</a>
           <a href="#showroom" className="transition-colors hover:text-[var(--potter-text)]">Showroom</a>
+          <a href="#wallpaper" className="transition-colors hover:text-[var(--potter-text)]">Wallpaper</a>
           <a href="#install" className="transition-colors hover:text-[var(--potter-text)]">Install</a>
           <a
             href="https://github.com/LucasStrand/potter-theme"

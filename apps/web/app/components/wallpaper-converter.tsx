@@ -21,6 +21,7 @@ export function WallpaperConverter() {
   const [divider, setDivider] = useState(50);
   const [fileName, setFileName] = useState("sample");
   const [dragging, setDragging] = useState(false);
+  const [aspect, setAspect] = useState(16 / 9); // preview box tracks the image exactly (no letterbox)
 
   // follow the global flavor switch unless the user picks one here afterwards
   useEffect(() => setFlavor(globalFlavor), [globalFlavor]);
@@ -109,6 +110,7 @@ export function WallpaperConverter() {
     octx.drawImage(bmp, 0, 0, pw, ph);
     previewDataRef.current = octx.getImageData(0, 0, pw, ph);
 
+    setAspect(pw / ph);
     setFileName(name);
     setHasImage(true);
     setVersion((v) => v + 1);
@@ -235,12 +237,15 @@ export function WallpaperConverter() {
         }}
         onDragLeave={() => setDragging(false)}
         className="surface-card relative select-none overflow-hidden"
-        style={{ outline: dragging ? "2px dashed var(--site-accent, var(--potter-peach))" : undefined }}
+        style={{
+          aspectRatio: aspect,
+          outline: dragging ? "2px dashed var(--site-accent, var(--potter-peach))" : undefined,
+        }}
       >
-        <canvas ref={originalRef} className="block h-auto w-full" />
+        <canvas ref={originalRef} className="absolute inset-0 block h-full w-full" />
         <canvas
           ref={resultRef}
-          className="absolute inset-0 block h-auto w-full"
+          className="absolute inset-0 block h-full w-full"
           style={{ clipPath: `inset(0 0 0 ${divider}%)` }}
         />
 

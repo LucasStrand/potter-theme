@@ -54,6 +54,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-potter-flavor="quill" suppressHydrationWarning className={`${fraunces.variable} ${jbmono.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlash }} />
+        {/* Pensive (/tools/pensive) typefaces — referenced by literal family name in inline styles + canvas */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <FlavorProvider>{children}</FlavorProvider>

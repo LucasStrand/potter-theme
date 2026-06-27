@@ -4,9 +4,10 @@ import { Section } from "./components/section";
 import { PaletteExplorer } from "./components/palette-explorer";
 import { Showroom } from "./components/showroom";
 import { WallpaperConverter } from "./components/wallpaper-converter";
+import Link from "next/link";
 import { Ports } from "./components/ports";
 import { Install } from "./components/install";
-import { UnderConstruction } from "./components/under-construction";
+import { PensiveHero } from "./components/pensive/pensive-hero";
 import { Footer } from "./components/footer";
 
 export default function Home() {
@@ -42,6 +43,16 @@ export default function Home() {
           lead="Drop in any image, and with the flick and a swish of your wand, re-ink it in your flavor."
         >
           <WallpaperConverter />
+          <p className="mt-6 text-sm" style={{ color: "var(--potter-subtext0)" }}>
+            Want other palettes — Catppuccin, Gruvbox, Nord and more?{" "}
+            <Link
+              href="/tools/wallpaper-converter"
+              className="underline underline-offset-4 transition-colors hover:text-[var(--potter-text)]"
+              style={{ color: "var(--site-accent, var(--potter-peach))" }}
+            >
+              Open the full Wallpaper Studio →
+            </Link>
+          </p>
         </Section>
 
         <Section
@@ -62,7 +73,7 @@ export default function Home() {
           <Install />
         </Section>
 
-        <UnderConstruction />
+        <PensiveHero embedded />
       </main>
       <Footer />
     </>

@@ -87,6 +87,8 @@ body {
 .rise-3 { animation-delay: 0.45s; }
 .rise-4 { animation-delay: 0.6s; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+/* Pensive hero entrance (the /tools/pensive download page + homepage band) */
+@keyframes penFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
   .ink-reveal, .ink-dot, .flourish path, .rise { animation: none !important; clip-path: none; stroke-dashoffset: 0; opacity: 1; transform: none; }
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "./logo";
 
 export function Footer() {
@@ -11,6 +12,9 @@ export function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm" style={{ color: "var(--potter-subtext1)" }}>
+          <Link href="/tools/wallpaper-converter" className="hover:text-[var(--potter-text)]">Wallpaper studio</Link>
+          <Link href="/svgpng-converter" className="hover:text-[var(--potter-text)]">SVG → PNG</Link>
+          <Link href="/tools/pensive" className="hover:text-[var(--potter-text)]">Pensive</Link>
           <a href="https://github.com/LucasStrand/potter-theme" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]">GitHub</a>
           <a href="https://github.com/LucasStrand/potter-theme/blob/main/STYLE_GUIDE.md" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]">Style guide</a>
           <a href="https://www.npmjs.com/package/@potternu/css" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]">npm</a>

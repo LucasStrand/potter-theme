@@ -4,7 +4,7 @@
  * images never block the UI. The component falls back to the synchronous core if Workers
  * are unavailable.
  */
-import { buildLut, applyLut, paletteTargets, type ConvertOptions } from "./wallpaper";
+import { buildLut, applyLut, resolveTargets, type ConvertOptions } from "./wallpaper";
 
 export interface WorkerRequest {
   id: number;
@@ -24,7 +24,7 @@ export interface WorkerResponse {
 self.onmessage = (e: MessageEvent<WorkerRequest>) => {
   const { id, buffer, width, height, opts } = e.data;
   const rgba = new Uint8ClampedArray(buffer);
-  const lut = buildLut(paletteTargets(opts.flavor), opts);
+  const lut = buildLut(resolveTargets(opts), opts);
   applyLut(rgba, lut, opts.strength);
   const res: WorkerResponse = { id, buffer, width, height };
   (self as unknown as Worker).postMessage(res, [buffer]);

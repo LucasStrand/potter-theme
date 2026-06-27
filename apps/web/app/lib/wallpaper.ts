@@ -23,7 +23,8 @@ export interface RGB {
 }
 
 export interface ConvertOptions {
-  flavor: FlavorId;
+  /** Potter flavor; ignored when `targets` is supplied. */
+  flavor?: FlavorId;
   mode: Mode;
   /** Blend original → mapped. 0 = untouched, 1 = fully recolored. */
   strength: number;
@@ -31,6 +32,13 @@ export interface ConvertOptions {
   softness: number;
   /** Smooth mode only: keep each pixel's original brightness. */
   preserveLuminance: boolean;
+  /** Explicit target palette (overrides `flavor`). Powers the multi-theme studio. */
+  targets?: RGB[];
+}
+
+/** Resolve the target palette for a conversion: explicit `targets` win, else the Potter flavor. */
+export function resolveTargets(opts: ConvertOptions): RGB[] {
+  return opts.targets && opts.targets.length ? opts.targets : paletteTargets(opts.flavor ?? "quill");
 }
 
 export const DEFAULT_OPTIONS: ConvertOptions = {
@@ -213,6 +221,6 @@ export function applyLut(rgba: Uint8ClampedArray, lut: Lut, strength: number): v
 
 /** High-level one-shot: recolor RGBA pixel data in place for the given options. */
 export function recolor(rgba: Uint8ClampedArray, opts: ConvertOptions): void {
-  const lut = buildLut(paletteTargets(opts.flavor), opts);
+  const lut = buildLut(resolveTargets(opts), opts);
   applyLut(rgba, lut, opts.strength);
 }

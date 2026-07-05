@@ -28,19 +28,17 @@ export function PensiveHero({ embedded = false }: { embedded?: boolean }) {
 
   return (
     <section
-      id={embedded ? "pensive" : undefined}
       data-screen-label="Hero"
       style={{
         position: "relative",
         height: embedded ? "auto" : "100vh",
-        minHeight: embedded ? "640px" : "700px",
+        minHeight: embedded ? "560px" : "700px",
         overflow: "hidden",
         background: "#1c1812",
         color: "#efe9df",
         fontFamily: "'EB Garamond', Georgia, serif",
         WebkitFontSmoothing: "antialiased",
-        scrollMarginTop: embedded ? "3.5rem" : undefined,
-        padding: embedded ? "0 0 96px" : undefined,
+        padding: embedded ? "0 0 80px" : undefined,
       }}
     >
       <PensiveCanvas palette={palette} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }} />
@@ -70,40 +68,6 @@ export function PensiveHero({ embedded = false }: { embedded?: boolean }) {
           background: "radial-gradient(ellipse at center, rgba(28,24,18,.5) 0%, rgba(28,24,18,0) 64%)",
         }}
       />
-
-      {/* On the homepage, feather the band into the surrounding page so the seam
-          dissolves and the embers seem to drift up out of (and settle back into)
-          the page. Fades use --potter-base so the blend tracks every flavor. */}
-      {embedded && (
-        <>
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              top: 0,
-              height: 170,
-              zIndex: 3,
-              pointerEvents: "none",
-              background: "linear-gradient(to bottom, var(--potter-base) 0%, rgba(28,24,18,0) 100%)",
-            }}
-          />
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              height: 190,
-              zIndex: 3,
-              pointerEvents: "none",
-              background: "linear-gradient(to top, var(--potter-base) 0%, rgba(28,24,18,0) 100%)",
-            }}
-          />
-        </>
-      )}
 
       {!embedded && (
         <header
@@ -144,11 +108,11 @@ export function PensiveHero({ embedded = false }: { embedded?: boolean }) {
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          padding: embedded ? "clamp(96px,14vh,160px) 24px 0" : "0 24px",
+          padding: embedded ? "clamp(72px,10vh,120px) 24px 0" : "0 24px",
         }}
       >
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: ".32em", color: "#e08a6a", animation: "penFade .9s ease .05s both" }}>
-          {embedded ? "FROM THE POTTER WORKSHOP" : "CODE REVIEW, RECONSIDERED"}
+          CODE REVIEW, RECONSIDERED
         </div>
         <h1 style={{ fontFamily: "'Newsreader', serif", fontWeight: 300, fontSize: "clamp(44px,8vw,94px)", lineHeight: 1.02, letterSpacing: "-.015em", margin: "18px 0 0", color: "#f4eee2", animation: "penFade 1s ease .14s both" }}>
           Pour the diff in.

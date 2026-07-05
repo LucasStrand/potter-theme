@@ -93,6 +93,45 @@ body {
   .ink-reveal, .ink-dot, .flourish path, .rise { animation: none !important; clip-path: none; stroke-dashoffset: 0; opacity: 1; transform: none; }
 }
 
+/* full-bleed tinted band with feathered edges — scroll rhythm between sections */
+.section-tinted {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--potter-mantle) 7%,
+    var(--potter-mantle) 93%,
+    transparent 100%
+  );
+}
+
+/* marquee — slow ticker of the theme's vitals */
+.marquee-track {
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* hero content drifts up and fades as it scrolls away (progressive enhancement) */
+@supports (animation-timeline: view()) {
+  .hero-exit {
+    animation: hero-exit linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 90%;
+  }
+}
+@keyframes hero-exit {
+  to { opacity: 0; transform: translateY(-48px) scale(0.985); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .hero-exit { animation: none; }
+}
+
 /* utility: subtle card surface */
 .surface-card {
   background: var(--potter-mantle);

@@ -1,5 +1,5 @@
 "use client";
-import { InkCanvas } from "./ink-canvas";
+import { HeroVideo } from "./hero-video";
 import { Wordmark } from "./wordmark";
 import { FlavorSwitch } from "./flavor-switch";
 import { ACCENTS } from "../lib/palette";
@@ -13,17 +13,17 @@ export function Hero() {
   const { copied, copy } = useCopy();
   return (
     <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 text-center">
-      <InkCanvas />
+      <HeroVideo />
       {/* legibility + vignette */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 90% at 50% 30%, transparent 40%, rgb(var(--potter-base-rgb) / 0.55) 100%), linear-gradient(to bottom, transparent 55%, var(--potter-base) 98%)",
+            "radial-gradient(120% 90% at 50% 30%, transparent 35%, rgb(var(--potter-base-rgb) / 0.62) 100%), linear-gradient(to bottom, rgb(var(--potter-base-rgb) / 0.3) 0%, transparent 22%, transparent 55%, var(--potter-base) 98%)",
         }}
       />
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="hero-exit relative z-10 flex flex-col items-center">
         <p className="rise font-mono text-[11px] uppercase tracking-[0.32em]" style={{ color: "var(--potter-subtext0)" }}>
           ~ a quill writes ~
         </p>

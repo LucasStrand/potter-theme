@@ -1,23 +1,29 @@
 "use client";
 // Background remover (/tools/background-remover).
-// Drop in a photo, get the subject cut out on transparency. A U-2-Netp saliency model
-// runs locally in a worker; the mask it returns is upscaled and composited here, so the
-// edge sliders and backdrop swatches re-render instantly without re-running inference.
-// Nothing is uploaded — the model comes to the image, not the other way round.
+// Drop in an image, get the subject cut out on transparency. Two engines sit behind one
+// button: a flat backdrop (logo, screenshot, studio shot) is keyed exactly, a photo goes to
+// a U-2-Netp saliency model in a worker. The right one is chosen by measuring the image —
+// see analyzeBackground — so the defaults are usually the finished answer.
+// Nothing is uploaded: the model comes to the image, not the other way round.
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FlavorSwitch } from "./flavor-switch";
 import {
+  analyzeBackground,
   buildAlphaLut,
+  colourDistance,
   DEFAULT_EDGE,
+  KEY_RAMP,
   MODEL_SIZE,
+  type Analysis,
   type EdgeOptions,
   type WorkerResponse,
 } from "../lib/bg-remove";
 
 type Backdrop = "transparent" | "white" | "black" | "accent" | "custom";
 type Phase = "idle" | "loading" | "working" | "done" | "error";
+type Mode = "auto" | "key" | "subject";
 
 const BACKDROP_HEX: Record<"white" | "black", string> = {
   white: "#ffffff",
@@ -37,19 +43,29 @@ export function BackgroundRemover() {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
+  const [mode, setMode] = useState<Mode>("auto");
   const [edge, setEdge] = useState<EdgeOptions>(DEFAULT_EDGE);
+  const [tolerance, setTolerance] = useState(0.04);
   const [backdrop, setBackdrop] = useState<Backdrop>("transparent");
   const [customBg, setCustomBg] = useState("#1c1812");
   const [showOriginal, setShowOriginal] = useState(false);
   const [dims, setDims] = useState({ w: 0, h: 0 });
   const [name, setName] = useState("cutout");
+  const [analysis, setAnalysis] = useState<Analysis | null>(null);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const workerRef = useRef<Worker | null>(null);
   const reqId = useRef(0);
-  // Kept across re-composites so slider drags never touch the model.
+  // Kept across re-composites so control tweaks never redo the expensive work.
   const sourceRef = useRef<ImageBitmap | null>(null);
   const maskRef = useRef<Uint8ClampedArray | null>(null);
+  /** Per-pixel distance from the backdrop colour, quantized to 0..255. */
+  const distRef = useRef<Uint8Array | null>(null);
+
+  const resolved: Exclude<Mode, "auto"> =
+    mode === "auto" ? (analysis?.kind === "photo" ? "subject" : "key") : mode;
+  /** An already-cut-out image is left exactly as it came in. */
+  const passthrough = mode === "auto" && analysis?.kind === "transparent";
 
   useEffect(() => {
     const w = new Worker(new URL("../lib/bg-remove.worker.ts", import.meta.url), { type: "module" });
@@ -57,56 +73,98 @@ export function BackgroundRemover() {
     return () => w.terminate();
   }, []);
 
-  /**
-   * Paint the current source + mask + controls into the canvas.
-   * The mask arrives at 320² and is upscaled with smoothing — that interpolation is
-   * what gives a soft, non-staircased edge on a full-resolution photo.
-   */
+  /** Hand the 320² frame to the model. Only needed in subject mode. */
+  const runModel = useCallback((bitmap: ImageBitmap) => {
+    const small = document.createElement("canvas");
+    small.width = MODEL_SIZE;
+    small.height = MODEL_SIZE;
+    const sctx = small.getContext("2d", { willReadFrequently: true })!;
+    sctx.imageSmoothingQuality = "high";
+    // Squash to the model's fixed input. Aspect distortion is what U-2-Net was
+    // trained on, so this is faithful rather than sloppy.
+    sctx.drawImage(bitmap, 0, 0, MODEL_SIZE, MODEL_SIZE);
+    const rgba = sctx.getImageData(0, 0, MODEL_SIZE, MODEL_SIZE).data;
+
+    const worker = workerRef.current;
+    if (!worker) return;
+    const id = ++reqId.current;
+    setPhase("working");
+    const buffer = new Uint8ClampedArray(rgba).buffer;
+    worker.postMessage({ id, buffer }, [buffer]);
+  }, []);
+
   const composite = useCallback(() => {
     const src = sourceRef.current;
-    const mask = maskRef.current;
     const canvas = canvasRef.current;
-    if (!src || !mask || !canvas) return;
+    if (!src || !canvas) return;
 
     const { width: w, height: h } = src;
     canvas.width = w;
     canvas.height = h;
     const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
-
-    // 1. Upscale the mask (optionally blurred) to full size.
-    const maskCanvas = document.createElement("canvas");
-    maskCanvas.width = MODEL_SIZE;
-    maskCanvas.height = MODEL_SIZE;
-    const mctx = maskCanvas.getContext("2d")!;
-    const img = mctx.createImageData(MODEL_SIZE, MODEL_SIZE);
-    for (let i = 0; i < mask.length; i++) {
-      img.data[i * 4] = img.data[i * 4 + 1] = img.data[i * 4 + 2] = mask[i];
-      img.data[i * 4 + 3] = 255;
-    }
-    mctx.putImageData(img, 0, 0);
-
-    const up = document.createElement("canvas");
-    up.width = w;
-    up.height = h;
-    const uctx = up.getContext("2d", { willReadFrequently: true })!;
-    uctx.imageSmoothingEnabled = true;
-    uctx.imageSmoothingQuality = "high";
-    if (edge.softness > 0) uctx.filter = `blur(${edge.softness}px)`;
-    uctx.drawImage(maskCanvas, 0, 0, w, h);
-    uctx.filter = "none";
-    const upMask = uctx.getImageData(0, 0, w, h).data;
-
-    // 2. Draw the photo, then replace its alpha with the tuned mask.
     ctx.clearRect(0, 0, w, h);
     ctx.drawImage(src, 0, 0);
     const frame = ctx.getImageData(0, 0, w, h);
-    const lut = buildAlphaLut(edge);
-    for (let i = 0, n = w * h; i < n; i++) {
-      frame.data[i * 4 + 3] = lut[upMask[i * 4]];
+    const n = w * h;
+
+    if (passthrough) {
+      // Already transparent: the source alpha IS the answer, leave it untouched.
+    } else if (resolved === "key") {
+      // Usually precomputed at intake, but a photo forced into key mode by hand has
+      // no distance field yet — build it from the frame we just read.
+      let dist = distRef.current;
+      if (!dist) {
+        const colour = analysis?.colour ?? [0, 0, 0];
+        dist = new Uint8Array(n);
+        for (let i = 0; i < n; i++) {
+          dist[i] = Math.round(
+            Math.min(1, colourDistance(frame.data[i * 4], frame.data[i * 4 + 1], frame.data[i * 4 + 2], colour)) * 255,
+          );
+        }
+        distRef.current = dist;
+      }
+      // Ramp from backdrop (transparent) to subject (opaque). Multiplying by the
+      // source alpha preserves transparency an image already had.
+      const lo = tolerance * 255;
+      const hi = Math.min(255, (tolerance + KEY_RAMP) * 255);
+      for (let i = 0; i < n; i++) {
+        const d = dist[i];
+        const a = d <= lo ? 0 : d >= hi ? 1 : (d - lo) / (hi - lo);
+        frame.data[i * 4 + 3] = Math.round(a * frame.data[i * 4 + 3]);
+      }
+    } else {
+      const mask = maskRef.current;
+      if (!mask) return;
+      // Upscale the 320² matte with smoothing — that interpolation is what keeps a
+      // full-resolution edge from staircasing.
+      const maskCanvas = document.createElement("canvas");
+      maskCanvas.width = MODEL_SIZE;
+      maskCanvas.height = MODEL_SIZE;
+      const mctx = maskCanvas.getContext("2d")!;
+      const img = mctx.createImageData(MODEL_SIZE, MODEL_SIZE);
+      for (let i = 0; i < mask.length; i++) {
+        img.data[i * 4] = img.data[i * 4 + 1] = img.data[i * 4 + 2] = mask[i];
+        img.data[i * 4 + 3] = 255;
+      }
+      mctx.putImageData(img, 0, 0);
+
+      const up = document.createElement("canvas");
+      up.width = w;
+      up.height = h;
+      const uctx = up.getContext("2d", { willReadFrequently: true })!;
+      uctx.imageSmoothingEnabled = true;
+      uctx.imageSmoothingQuality = "high";
+      if (edge.softness > 0) uctx.filter = `blur(${edge.softness}px)`;
+      uctx.drawImage(maskCanvas, 0, 0, w, h);
+      uctx.filter = "none";
+      const upMask = uctx.getImageData(0, 0, w, h).data;
+
+      const lut = buildAlphaLut(edge);
+      for (let i = 0; i < n; i++) frame.data[i * 4 + 3] = lut[upMask[i * 4]];
     }
+
     ctx.putImageData(frame, 0, 0);
 
-    // 3. Lay the chosen backdrop *behind* the cutout.
     if (backdrop !== "transparent") {
       const hex =
         backdrop === "accent" ? accentHex() : backdrop === "custom" ? customBg : BACKDROP_HEX[backdrop];
@@ -115,12 +173,18 @@ export function BackgroundRemover() {
       ctx.fillRect(0, 0, w, h);
       ctx.globalCompositeOperation = "source-over";
     }
-  }, [edge, backdrop, customBg]);
+  }, [resolved, passthrough, tolerance, edge, backdrop, customBg, analysis]);
 
-  // Re-composite whenever a control moves (cheap: no inference involved).
+  // Re-composite whenever a control moves (cheap: no inference, no distance pass).
   useEffect(() => {
     if (phase === "done" && !showOriginal) composite();
   }, [composite, phase, showOriginal]);
+
+  // Switching to subject mode on an image we keyed means the model hasn't run yet.
+  useEffect(() => {
+    if (resolved !== "subject" || maskRef.current || !sourceRef.current) return;
+    if (phase === "done" || phase === "error") runModel(sourceRef.current);
+  }, [resolved, phase, runModel]);
 
   // Toggling the before/after view repaints straight from the source bitmap.
   useEffect(() => {
@@ -135,48 +199,72 @@ export function BackgroundRemover() {
     ctx.drawImage(src, 0, 0);
   }, [showOriginal, phase]);
 
-  const intake = useCallback(async (file: File) => {
-    if (!file.type.startsWith("image/")) {
-      setError("That's not an image — try a PNG, JPG or WebP.");
-      setPhase("error");
-      return;
-    }
-    setError(null);
-    setPhase("loading");
-    setProgress(0);
-    setShowOriginal(false);
-    setName(file.name.replace(/\.[^.]+$/, "") || "cutout");
+  const intake = useCallback(
+    async (file: File) => {
+      if (!file.type.startsWith("image/")) {
+        setError("That's not an image — try a PNG, JPG or WebP.");
+        setPhase("error");
+        return;
+      }
+      setError(null);
+      setPhase("loading");
+      setProgress(0);
+      setShowOriginal(false);
+      setMode("auto");
+      setEdge(DEFAULT_EDGE);
+      maskRef.current = null;
+      setName(file.name.replace(/\.[^.]+$/, "") || "cutout");
 
-    let bitmap: ImageBitmap;
-    try {
-      bitmap = await createImageBitmap(file);
-    } catch {
-      setError("Couldn't decode that image.");
-      setPhase("error");
-      return;
-    }
-    sourceRef.current?.close();
-    sourceRef.current = bitmap;
-    setDims({ w: bitmap.width, h: bitmap.height });
+      let bitmap: ImageBitmap;
+      try {
+        bitmap = await createImageBitmap(file);
+      } catch {
+        setError("Couldn't decode that image.");
+        setPhase("error");
+        return;
+      }
+      sourceRef.current?.close();
+      sourceRef.current = bitmap;
+      const { width: w, height: h } = bitmap;
+      setDims({ w, h });
 
-    // Squash to the model's fixed 320² input. Aspect distortion is what U-2-Net
-    // was trained on, so this is faithful rather than sloppy.
-    const small = document.createElement("canvas");
-    small.width = MODEL_SIZE;
-    small.height = MODEL_SIZE;
-    const sctx = small.getContext("2d", { willReadFrequently: true })!;
-    sctx.imageSmoothingQuality = "high";
-    sctx.drawImage(bitmap, 0, 0, MODEL_SIZE, MODEL_SIZE);
-    const rgba = sctx.getImageData(0, 0, MODEL_SIZE, MODEL_SIZE).data;
+      // Read the image once at full resolution: the border ring decides the engine,
+      // and the distance field powers the key without a second pass per slider tick.
+      const full = document.createElement("canvas");
+      full.width = w;
+      full.height = h;
+      const fctx = full.getContext("2d", { willReadFrequently: true })!;
+      fctx.drawImage(bitmap, 0, 0);
+      const rgba = fctx.getImageData(0, 0, w, h).data;
 
-    const worker = workerRef.current;
-    if (!worker) return;
-    const id = ++reqId.current;
-    setPhase("working");
+      const found = analyzeBackground(rgba, w, h);
+      setAnalysis(found);
 
-    const buffer = new Uint8ClampedArray(rgba).buffer;
-    worker.postMessage({ id, buffer }, [buffer]);
-  }, []);
+      if (found.kind === "transparent") {
+        distRef.current = null;
+        setTolerance(found.tolerance);
+        setPhase("done"); // nothing to remove
+        return;
+      }
+
+      if (found.kind === "flat") {
+        setTolerance(found.tolerance);
+        const dist = new Uint8Array(w * h);
+        for (let i = 0; i < w * h; i++) {
+          dist[i] = Math.round(
+            Math.min(1, colourDistance(rgba[i * 4], rgba[i * 4 + 1], rgba[i * 4 + 2], found.colour)) * 255,
+          );
+        }
+        distRef.current = dist;
+        setPhase("done"); // keyed analytically — the model never has to load
+        return;
+      }
+
+      distRef.current = null;
+      runModel(bitmap);
+    },
+    [runModel],
+  );
 
   // Route worker replies. Stale ids are dropped so a fast second drop always wins.
   useEffect(() => {
@@ -232,10 +320,19 @@ export function BackgroundRemover() {
     phase === "loading"
       ? progress > 0 && progress < 1
         ? `Fetching the model — ${Math.round(progress * 100)}%`
-        : "Warming up the model…"
+        : "Reading the image…"
       : phase === "working"
         ? "Finding the subject…"
         : null;
+
+  const verdict =
+    phase === "done" && analysis
+      ? passthrough
+        ? "Already transparent — nothing to remove"
+        : resolved === "key"
+          ? `Flat backdrop detected — keyed against rgb(${analysis.colour.join(", ")})`
+          : "Photo detected — subject picked out by the model"
+      : null;
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--potter-base)", color: "var(--potter-text)" }}>
@@ -258,8 +355,9 @@ export function BackgroundRemover() {
             Keep the subject, lose the rest
           </h1>
           <p className="mt-3 max-w-2xl text-base sm:text-lg" style={{ color: "var(--potter-subtext0)" }}>
-            Drop a photo in and the background falls away — full resolution, real transparency, and not a
-            single byte leaves your machine. The model runs right here in the browser.
+            Drop a photo or a logo in and the background falls away — full resolution, real transparency,
+            and not a single byte leaves your machine. It reads the image first and picks the right method
+            on its own.
           </p>
         </header>
 
@@ -383,6 +481,20 @@ export function BackgroundRemover() {
                   {showOriginal ? "Cutout" : "Before"}
                 </button>
               </div>
+              {verdict && (
+                <p className="text-xs leading-relaxed" style={{ color: "var(--potter-overlay2)" }}>
+                  {verdict}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label>Method</Label>
+              <div className="flex flex-wrap gap-1.5">
+                <Pill active={mode === "auto"} onClick={() => setMode("auto")}>Auto</Pill>
+                <Pill active={mode === "key"} onClick={() => setMode("key")}>Flat backdrop</Pill>
+                <Pill active={mode === "subject"} onClick={() => setMode("subject")}>Photo subject</Pill>
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -405,43 +517,65 @@ export function BackgroundRemover() {
               )}
             </div>
 
-            <div className="space-y-3">
-              <Label>Edge</Label>
-              <Slider
-                label="Tightness"
-                hint="trims background haloes"
-                min={-20}
-                max={30}
-                step={1}
-                value={edge.shift}
-                onChange={(shift) => setEdge((e) => ({ ...e, shift }))}
-              />
-              <Slider
-                label="Softness"
-                hint="feathers the cut"
-                min={0}
-                max={6}
-                step={0.5}
-                value={edge.softness}
-                onChange={(softness) => setEdge((e) => ({ ...e, softness }))}
-              />
-              <Slider
-                label="Hardness"
-                hint="snaps edges crisp"
-                min={1}
-                max={6}
-                step={0.1}
-                value={edge.contrast}
-                onChange={(contrast) => setEdge((e) => ({ ...e, contrast }))}
-              />
-              <button
-                onClick={() => setEdge(DEFAULT_EDGE)}
-                className="w-full cursor-pointer rounded-lg px-3 py-2 text-xs font-medium transition-colors"
-                style={{ background: "var(--potter-surface0)", color: "var(--potter-text)" }}
-              >
-                Reset edge
-              </button>
-            </div>
+            {passthrough ? null : resolved === "key" ? (
+              <div className="space-y-3">
+                <Label>Edge</Label>
+                <Slider
+                  label="Tolerance"
+                  hint="how close to the backdrop colour still counts as background"
+                  min={0.01}
+                  max={0.35}
+                  step={0.005}
+                  value={tolerance}
+                  onChange={setTolerance}
+                />
+                <button
+                  onClick={() => analysis && setTolerance(analysis.tolerance)}
+                  className="w-full cursor-pointer rounded-lg px-3 py-2 text-xs font-medium transition-colors"
+                  style={{ background: "var(--potter-surface0)", color: "var(--potter-text)" }}
+                >
+                  Reset to auto
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <Label>Edge</Label>
+                <Slider
+                  label="Tightness"
+                  hint="trims background haloes"
+                  min={-20}
+                  max={30}
+                  step={1}
+                  value={edge.shift}
+                  onChange={(shift) => setEdge((e) => ({ ...e, shift }))}
+                />
+                <Slider
+                  label="Softness"
+                  hint="feathers the cut"
+                  min={0}
+                  max={6}
+                  step={0.5}
+                  value={edge.softness}
+                  onChange={(softness) => setEdge((e) => ({ ...e, softness }))}
+                />
+                <Slider
+                  label="Hardness"
+                  hint="snaps edges crisp"
+                  min={1}
+                  max={6}
+                  step={0.1}
+                  value={edge.contrast}
+                  onChange={(contrast) => setEdge((e) => ({ ...e, contrast }))}
+                />
+                <button
+                  onClick={() => setEdge(DEFAULT_EDGE)}
+                  className="w-full cursor-pointer rounded-lg px-3 py-2 text-xs font-medium transition-colors"
+                  style={{ background: "var(--potter-surface0)", color: "var(--potter-text)" }}
+                >
+                  Reset edge
+                </button>
+              </div>
+            )}
 
             <button
               onClick={download}
@@ -453,8 +587,9 @@ export function BackgroundRemover() {
             </button>
 
             <p className="text-xs leading-relaxed" style={{ color: "var(--potter-overlay2)" }}>
-              Uses U-2-Netp (Apache-2.0) via ONNX Runtime Web. The 4.5MB model downloads once, then your
-              browser caches it.
+              Logos and flat backdrops are keyed exactly — no model needed. Photos use U-2-Netp
+              (Apache-2.0) via ONNX Runtime Web; that 4.5MB model downloads once, then your browser
+              caches it.
             </p>
           </aside>
         </div>
@@ -507,7 +642,9 @@ function Slider({
     <div>
       <div className="flex items-baseline justify-between">
         <span className="text-sm" style={{ color: "var(--potter-subtext1)" }}>{label}</span>
-        <span className="font-mono text-[11px]" style={{ color: "var(--potter-overlay2)" }}>{value}</span>
+        <span className="font-mono text-[11px]" style={{ color: "var(--potter-overlay2)" }}>
+          {step < 1 ? value.toFixed(2) : value}
+        </span>
       </div>
       <input
         type="range"

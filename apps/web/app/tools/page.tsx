@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Tools — the Potter workshop",
-  description: "Small, focused tools from the Potter workshop: a wallpaper recolor studio, an SVG → PNG converter, and Pensive.",
+  description: "Small, focused tools from the Potter workshop: a wallpaper recolor studio, a background remover, an SVG → PNG converter, and Pensive.",
 };
 
 const TOOLS = [
@@ -12,6 +12,12 @@ const TOOLS = [
     eyebrow: "recolor",
     title: "Wallpaper Studio",
     blurb: "Re-ink any image onto Potter, Catppuccin, Gruvbox, Dracula, Nord, Tokyo Night or Rosé Pine — full-res PNG, all in the browser.",
+  },
+  {
+    href: "/tools/background-remover",
+    eyebrow: "cut out",
+    title: "Background Remover",
+    blurb: "Drop a photo, keep the subject. A salient-object model runs in your browser and hands back a full-res PNG with real transparency.",
   },
   {
     href: "/svgpng-converter",

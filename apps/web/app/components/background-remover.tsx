@@ -4,7 +4,7 @@
 // button: a flat backdrop (logo, screenshot, studio shot) is keyed exactly, a photo goes to
 // a U-2-Netp saliency model in a worker. The right one is chosen by measuring the image —
 // see analyzeBackground — so the defaults are usually the finished answer.
-// Nothing is uploaded: the model comes to the image, not the other way round.
+// The cutout itself runs locally; the original is also saved to Potter's file storage.
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -20,6 +20,7 @@ import {
   type EdgeOptions,
   type WorkerResponse,
 } from "../lib/bg-remove";
+import { saveToolFile } from "../lib/tool-files";
 
 type Backdrop = "transparent" | "white" | "black" | "accent" | "custom";
 type Phase = "idle" | "loading" | "working" | "done" | "error";
@@ -206,6 +207,7 @@ export function BackgroundRemover() {
         setPhase("error");
         return;
       }
+      void saveToolFile("background-remover", file);
       setError(null);
       setPhase("loading");
       setProgress(0);
@@ -356,8 +358,8 @@ export function BackgroundRemover() {
           </h1>
           <p className="mt-3 max-w-2xl text-base sm:text-lg" style={{ color: "var(--potter-subtext0)" }}>
             Drop a photo or a logo in and the background falls away — full resolution, real transparency,
-            and not a single byte leaves your machine. It reads the image first and picks the right method
-            on its own.
+            all worked out in your browser. It reads the image first and picks the right method on its own.
+            Images you drop in are kept in Potter&apos;s file storage.
           </p>
         </header>
 
@@ -447,8 +449,8 @@ export function BackgroundRemover() {
             </div>
             <p className="mt-2 font-mono text-[11px]" style={{ color: "var(--potter-overlay2)" }}>
               {dims.w > 0
-                ? `checkerboard = transparent · ${dims.w}×${dims.h}px · runs locally, nothing uploaded`
-                : "checkerboard = transparent · runs locally, nothing uploaded"}
+                ? `checkerboard = transparent · ${dims.w}×${dims.h}px · runs locally, original saved`
+                : "checkerboard = transparent · runs locally, original saved"}
             </p>
           </div>
 

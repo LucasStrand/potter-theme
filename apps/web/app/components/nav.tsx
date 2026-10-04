@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { FlavorSwitch } from "./flavor-switch";
 import { Logo } from "./logo";
 
@@ -17,6 +18,7 @@ export function Nav() {
           <a href="#showroom" className="transition-colors hover:text-[var(--potter-text)]">Showroom</a>
           <a href="#wallpaper" className="transition-colors hover:text-[var(--potter-text)]">Wallpaper</a>
           <a href="#install" className="transition-colors hover:text-[var(--potter-text)]">Install</a>
+          <Link href="/tools" className="transition-colors hover:text-[var(--potter-text)]">Tools</Link>
           <a
             href="https://github.com/LucasStrand/potter-theme"
             target="_blank"

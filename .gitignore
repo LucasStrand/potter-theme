@@ -17,3 +17,7 @@ _shoot.mjs
 _shot-*.png
 
 .vercel
+
+# local secrets
+.env
+.env*.local

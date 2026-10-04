@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Tools — the Potter workshop",
-  description: "Small, focused tools from the Potter workshop: a wallpaper recolor studio, a background remover, an SVG → PNG converter, and Pensive.",
+  description: "Small, focused tools from the Potter workshop: a wallpaper recolor studio, a background remover, a 3D viewer and an SVG → PNG converter.",
 };
 
 const TOOLS = [
@@ -20,16 +20,16 @@ const TOOLS = [
     blurb: "Drop a photo, keep the subject. A salient-object model runs in your browser and hands back a full-res PNG with real transparency.",
   },
   {
+    href: "/tools/3d-viewer",
+    eyebrow: "inspect",
+    title: "3D Viewer",
+    blurb: "Open GLB, GLTF, OBJ, STL, PLY, FBX or 3MF models. Orbit, zoom, check the triangle count and save a snapshot.",
+  },
+  {
     href: "/svgpng-converter",
     eyebrow: "rasterize",
     title: "SVG → PNG",
     blurb: "Convert SVG to PNG at any size with a live transparency preview and hand tools to make the alpha exactly right.",
-  },
-  {
-    href: "/tools/pensive",
-    eyebrow: "review",
-    title: "Pensive",
-    blurb: "Pour the diff in, see what you missed. A focused, distraction-free code review reader.",
   },
 ];
 
@@ -51,7 +51,7 @@ export default function ToolsPage() {
             Tools
           </h1>
           <p className="mt-3 max-w-2xl text-base sm:text-lg" style={{ color: "var(--potter-subtext0)" }}>
-            Small, sharp tools — all client-side, nothing uploaded anywhere.
+            Small, sharp tools that do their work in your browser. Files you open in them are kept in Potter&apos;s file storage.
           </p>
         </header>
 

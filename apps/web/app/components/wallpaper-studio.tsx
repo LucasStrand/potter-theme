@@ -9,6 +9,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { recolor, type ConvertOptions, type Mode } from "../lib/wallpaper";
 import type { WorkerRequest, WorkerResponse } from "../lib/wallpaper.worker";
 import { THEMES, findFlavor, themeOf, flavorTargets, readableOn } from "../lib/themes";
+import { saveToolFile } from "../lib/tool-files";
 
 const MAX_PREVIEW = 1400;
 const MAX_FULL = 3840;
@@ -184,6 +185,7 @@ export function WallpaperStudio() {
   const intake = useCallback(
     async (file: File) => {
       if (!file.type.startsWith("image/")) return;
+      void saveToolFile("wallpaper-studio", file);
       const bmp = await createImageBitmap(file);
       loadBitmap(bmp, file.name.replace(/\.[^.]+$/, ""));
     },
@@ -268,8 +270,7 @@ export function WallpaperStudio() {
             Potter<span style={{ color: "var(--accent)" }}>.</span>
           </Link>
           <div className="flex items-center gap-4 text-sm" style={{ color: "var(--subtext)" }}>
-            <Link href="/svgpng-converter" className="transition-opacity hover:opacity-70">SVG → PNG</Link>
-            <Link href="/tools/pensive" className="transition-opacity hover:opacity-70">Pensive</Link>
+            <Link href="/tools" className="transition-opacity hover:opacity-70">Tools</Link>
           </div>
         </div>
 

@@ -9,7 +9,6 @@ import { WallpaperConverter } from "./components/wallpaper-converter";
 import Link from "next/link";
 import { Ports } from "./components/ports";
 import { Install } from "./components/install";
-import { PensiveHero } from "./components/pensive/pensive-hero";
 import { Footer } from "./components/footer";
 
 export default function Home() {
@@ -83,46 +82,6 @@ export default function Home() {
           lead="Pick your target. The snippet follows the flavor you've selected."
         >
           <Install />
-        </Section>
-
-        <Section
-          id="pensive"
-          index="06"
-          eyebrow="from the workshop"
-          title="Meet Pensive"
-          lead={
-            <>
-              The first{" "}
-              <Link
-                href="/tools"
-                className="underline underline-offset-4 transition-colors hover:text-[var(--potter-text)]"
-                style={{ color: "var(--site-accent, var(--potter-peach))" }}
-              >
-                Pottertool
-              </Link>
-              : a more thoughtful code review
-            </>
-          }
-        >
-          <div
-            className="overflow-hidden rounded-3xl"
-            style={{
-              border: "1px solid var(--potter-surface0)",
-              boxShadow: "0 30px 80px -40px rgba(0, 0, 0, 0.5)",
-            }}
-          >
-            <PensiveHero embedded />
-          </div>
-          <p className="mt-6 text-sm" style={{ color: "var(--potter-subtext0)" }}>
-            Downloads, features and the full story live on its own page.{" "}
-            <Link
-              href="/tools/pensive"
-              className="underline underline-offset-4 transition-colors hover:text-[var(--potter-text)]"
-              style={{ color: "var(--site-accent, var(--potter-peach))" }}
-            >
-              Open Pensive →
-            </Link>
-          </p>
         </Section>
       </main>
       <Footer />

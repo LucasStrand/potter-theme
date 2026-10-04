@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useFlavor, FLAVORS, FLAVOR_LABEL, type Flavor } from "../flavor-provider";
 import { recolor, type ConvertOptions, type Mode } from "../lib/wallpaper";
 import type { WorkerRequest, WorkerResponse } from "../lib/wallpaper.worker";
+import { saveToolFile } from "../lib/tool-files";
 
 const MAX_PREVIEW = 1400; // longest side for the live preview
 const MAX_FULL = 3840; // longest side for the downloaded image
@@ -170,6 +171,7 @@ export function WallpaperConverter() {
   const intake = useCallback(
     async (file: File) => {
       if (!file.type.startsWith("image/")) return;
+      void saveToolFile("wallpaper-studio", file);
       const bmp = await createImageBitmap(file);
       loadBitmap(bmp, file.name.replace(/\.[^.]+$/, ""));
     },

@@ -4,11 +4,13 @@
 // transparency. Renders SVG to a canvas at any size, previews it over a
 // checkerboard, and offers manual cleanup tools (color-key removal, flood fill,
 // eraser brush, trim) so the exported PNG is *actually* transparent where it
-// should be. Everything runs locally in the browser.
+// should be. Rendering runs locally in the browser; opened SVG files are saved to Potter's
+// file storage.
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FlavorSwitch } from "./flavor-switch";
+import { saveToolFile } from "../lib/tool-files";
 
 const SAMPLE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
   <rect width="240" height="240" fill="#ffffff"/>
@@ -164,6 +166,7 @@ export function SvgPngConverter() {
       setError("Please choose an .svg file.");
       return;
     }
+    void saveToolFile("svg-png", file);
     const text = await file.text();
     setSvgText(text);
   }, []);
@@ -313,7 +316,7 @@ export function SvgPngConverter() {
             Potter<span style={{ color: "var(--site-accent, var(--potter-peach))" }}>.</span>
           </Link>
           <div className="flex items-center gap-4 text-sm" style={{ color: "var(--potter-subtext1)" }}>
-            <Link href="/tools/wallpaper-converter" className="transition-opacity hover:opacity-70">Wallpaper</Link>
+            <Link href="/tools" className="transition-opacity hover:opacity-70">Tools</Link>
             <FlavorSwitch size="sm" />
           </div>
         </div>

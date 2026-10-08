@@ -28,6 +28,13 @@ export async function POST(request: Request) {
     case "wrong-key":
       return NextResponse.json({ locked: true, error: "That key doesn't fit." }, { status: 403 });
     case "ok":
-      return NextResponse.json({ room, body: result.body, checkout: result.checkout, locked: result.locked });
+      return NextResponse.json({
+        room,
+        body: result.body,
+        checkout: result.checkout,
+        locked: result.locked,
+        burn: result.burn,
+        files: result.files,
+      });
   }
 }

@@ -35,7 +35,7 @@ const TOOLS = [
     href: "/tools/paste-hotel",
     eyebrow: "check in",
     title: "Paste Hotel",
-    blurb: "Move text between devices without logging into anything. Check it in, carry a six-digit room number over, and it checks out on its own.",
+    blurb: "Move text and files between devices without logging into anything. Check them in, carry a six-digit room number over, and they check out on their own.",
   },
 ];
 

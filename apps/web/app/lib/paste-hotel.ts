@@ -17,6 +17,19 @@ export const MAX_PASTE_BYTES = 512 * 1024;
 /** Longest room key accepted. */
 export const MAX_KEY_LENGTH = 200;
 
+/** Most files one room holds, and their combined size. */
+export const MAX_ROOM_FILES = 10;
+export const MAX_ROOM_FILE_BYTES = 25 * 1024 * 1024;
+
+/** Where a room's uploads live in Blob: a random folder per check-in, real file names kept. */
+export const ROOM_FILE_PREFIX = "paste-hotel/rooms/";
+
+/**
+ * How long download links last. A room that checks out after its first visit also stays
+ * downloadable for this long once that visit has happened.
+ */
+export const VISIT_GRACE_SECONDS = 15 * 60;
+
 /** "482913" → "482 913" */
 export function formatRoom(room: string): string {
   return `${room.slice(0, 3)} ${room.slice(3)}`;

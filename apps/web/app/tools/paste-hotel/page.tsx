@@ -4,10 +4,10 @@ import { PasteHotel } from "../../components/paste-hotel";
 const BASE: Metadata = {
   title: "Paste Hotel — check text in on one screen, out on another",
   description:
-    "Move text between devices without logging into anything. Check a paste in, get a six-digit room number, and it checks out on its own.",
+    "Move text and files between devices without logging into anything. Check them in, get a six-digit room number, and they check out on their own.",
   openGraph: {
     title: "Paste Hotel — Potter",
-    description: "Check text in on one screen, out on another. No account; it checks out on its own.",
+    description: "Check text and files in on one screen, out on another. No account; they check out on their own.",
     url: "https://potter.nu/tools/paste-hotel",
     siteName: "Potter",
     type: "website",

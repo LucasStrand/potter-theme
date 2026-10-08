@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Tools — the Potter workshop",
-  description: "Small, focused tools from the Potter workshop: a wallpaper recolor studio, a background remover, a 3D viewer and an SVG → PNG converter.",
+  description: "Small, focused tools from the Potter workshop: a wallpaper recolor studio, a background remover, a 3D viewer, an SVG → PNG converter and Paste Hotel.",
 };
 
 const TOOLS = [
@@ -30,6 +30,12 @@ const TOOLS = [
     eyebrow: "rasterize",
     title: "SVG → PNG",
     blurb: "Convert SVG to PNG at any size with a live transparency preview and hand tools to make the alpha exactly right.",
+  },
+  {
+    href: "/tools/paste-hotel",
+    eyebrow: "check in",
+    title: "Paste Hotel",
+    blurb: "Move text between devices without logging into anything. Check it in, carry a six-digit room number over, and it checks out on its own.",
   },
 ];
 

@@ -519,31 +519,6 @@ export function PasteHotel() {
             )}
           </section>
         </div>
-
-        <ul className="mt-10 grid gap-6 text-sm sm:grid-cols-3" style={{ color: "var(--potter-subtext0)" }}>
-          <li>
-            <span style={{ color: "var(--potter-text)" }}>No guest book.</span> No account, no sign-up — the room number is
-            the whole receipt.
-          </li>
-          <li>
-            {keep ? (
-              <>
-                <span style={{ color: "var(--potter-text)" }}>Potter keeps a copy.</span>{" "}
-                Like every tool here, Paste Hotel keeps what it&apos;s given in Potter&apos;s file storage, even after
-                checkout. The gear on the check-in card switches that off.
-              </>
-            ) : (
-              <>
-                <span style={{ color: "var(--potter-text)" }}>Nobody lives here.</span>{" "}
-                Keeping a copy is switched off, so when the stay is up the room and its files are cleared out.
-              </>
-            )}
-          </li>
-          <li>
-            <span style={{ color: "var(--potter-text)" }}>Lock what matters.</span> An unlocked room opens for anyone with
-            its number. Keys are stored only as a hash.
-          </li>
-        </ul>
       </div>
     </div>
   );

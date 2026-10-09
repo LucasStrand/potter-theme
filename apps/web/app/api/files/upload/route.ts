@@ -13,6 +13,7 @@ import type { ToolId } from "../../../lib/tool-ids";
 const ALLOWED_TYPES: Record<ToolId, string[] | undefined> = {
   "wallpaper-studio": ["image/*"],
   "background-remover": ["image/*"],
+  "image-compressor": ["image/*"],
   "svg-png": ["image/svg+xml", "text/plain", "text/xml", "application/xml"],
   "3d-viewer": undefined,
   "paste-hotel": undefined,

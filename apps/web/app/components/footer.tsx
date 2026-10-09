@@ -15,6 +15,7 @@ export function Footer() {
           <Link href="/tools" className="hover:text-[var(--potter-text)]">Tools</Link>
           <Link href="/tools/wallpaper-converter" className="hover:text-[var(--potter-text)]">Wallpaper studio</Link>
           <Link href="/tools/background-remover" className="hover:text-[var(--potter-text)]">Background remover</Link>
+          <Link href="/tools/image-compressor" className="hover:text-[var(--potter-text)]">Image compressor</Link>
           <Link href="/tools/3d-viewer" className="hover:text-[var(--potter-text)]">3D viewer</Link>
           <Link href="/svgpng-converter" className="hover:text-[var(--potter-text)]">SVG → PNG</Link>
           <a href="https://github.com/LucasStrand/potter-theme" target="_blank" rel="noreferrer" className="hover:text-[var(--potter-text)]">GitHub</a>
